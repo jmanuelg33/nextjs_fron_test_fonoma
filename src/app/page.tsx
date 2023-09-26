@@ -30,6 +30,9 @@ export default function Home() {
   }
 
   const convertCurrency = (amount: number, fromCurrency: string, toCurrency: string) => {
+    setError("")
+    setResult("")
+
     if (!rates[fromCurrency] || !rates[toCurrency]) {
       setError("Currency not found")
       return
@@ -45,7 +48,7 @@ export default function Home() {
         setLoading(true)
 
         const cachedData = localStorage.getItem('exchangeRates')
-        
+
         // check if data is cached and not expired
         if (cachedData) {
           const parsedData = JSON.parse(cachedData)
